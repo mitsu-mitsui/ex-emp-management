@@ -25,9 +25,23 @@ public class AdministratorService {
 	 * @param admin 管理者
 	 */
 	public void insert(Administrator admin) {
-		
-		adminRepository.insert(admin);
-		System.out.println("insert--------------");
 
+		adminRepository.insert(admin);
+		System.out.println("service:insert()--------------");
+
+	}
+
+	/**
+	 * メールアドレスとパスワードから管理者情報を取得する．
+	 * 
+	 * @param mailAddress メールアドレス
+	 * @param password    パスワード
+	 * @return 管理者情報/引数と一致する管理者が見つからない：null
+	 */
+	public Administrator login(String mailAddress, String password) {
+
+		Administrator admin = adminRepository.findByMailAddressAndPassword(mailAddress, password);
+
+		return admin;
 	}
 }
