@@ -59,9 +59,14 @@ public class AdministratorRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
 				password);
 
-		Administrator admin = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
+		try {
+			Administrator admin = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
 
-		return admin;
+			return admin;
+		} catch (Exception e) {// 1件もhitしない
+			return null;
+		}
+
 	}
 
 }
