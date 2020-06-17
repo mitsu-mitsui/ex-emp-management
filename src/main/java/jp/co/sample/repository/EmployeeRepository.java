@@ -27,11 +27,16 @@ public class EmployeeRepository {
 	/**
 	 * 全件検索．
 	 * 
-	 * @return list 全従業員のemployee型リスト
+	 * @return emplist 全従業員のemployee型リスト
 	 */
 	public List<Employee> findAll() {
 
-		return null;///
+		String sql = "SELECT id,name,image,gender,here_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count"
+				+ " FROM employees;";
+
+		List<Employee> emplist = template.query(sql, EMPLOYEE_ROW_MAPPER);
+
+		return emplist;
 	}
 
 	/**
