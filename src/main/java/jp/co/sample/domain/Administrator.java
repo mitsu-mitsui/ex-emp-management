@@ -1,5 +1,11 @@
 package jp.co.sample.domain;
 
+/**
+ * 管理者ドメイン.
+ * 
+ * @author yuiko.mitsui
+ *
+ */
 public class Administrator {
 
 	/**
