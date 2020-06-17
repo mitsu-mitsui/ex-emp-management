@@ -1,7 +1,7 @@
 package jp.co.sample.form;
 
 /**
- * ユーザー登録時form.
+ * 管理者登録時form.
  * 
  * @author yuiko.mitsui
  *

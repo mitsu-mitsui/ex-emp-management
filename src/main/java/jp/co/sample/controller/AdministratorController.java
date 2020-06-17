@@ -9,7 +9,7 @@ import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
- * 従業員のコントローラ．
+ * 管理者情報の処理．
  * 
  * @author yuiko.mitsui
  *
