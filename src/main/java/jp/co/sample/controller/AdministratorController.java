@@ -1,6 +1,8 @@
 package jp.co.sample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,7 @@ import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
- * 管理者情報の処理．
+ * 管理者情報の処理を行うコントローラ．
  * 
  * @author yuiko.mitsui
  *
@@ -39,8 +41,9 @@ public class AdministratorController {
 	
 	/**
 	 * 管理者を追加．
-	 * @param insertAdminForm
-	 * @return 追加後の画面
+	 * 
+	 * @param insertAdminForm　フォーム
+	 * @return ログイン画面
 	 */
 	@RequestMapping("/insert")
 	public String insert( InsertAdministratorForm insertAdminForm ) {

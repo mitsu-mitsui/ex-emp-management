@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
 
+/**
+ * administratorsテーブルを操作するリポジトリ.
+ * 
+ * @author yuiko.mitsui
+ *
+ */
 @Repository
 public class AdministratorRepository {
 
@@ -29,7 +35,7 @@ public class AdministratorRepository {
 	/**
 	 * 管理者情報を挿入する.
 	 * 
-	 * @param admin Administrator:管理者
+	 * @param admin 管理者情報
 	 */
 	public void insert(Administrator admin) {
 
@@ -45,11 +51,11 @@ public class AdministratorRepository {
 	}
 
 	/**
-	 * paramから管理者情報を取得する.
+	 * メールアドレスとパスワードから管理者情報を取得する.
 	 * 
-	 * @param mailAddress
-	 * @param password
-	 * @return admin Administrator型の管理者
+	 * @param mailAddress メールアドレス
+	 * @param password パスワード
+	 * @return 管理者情報(1件も存在しない場合はnullが返る)
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 
