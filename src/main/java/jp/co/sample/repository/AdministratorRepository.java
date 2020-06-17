@@ -20,7 +20,7 @@ public class AdministratorRepository {
 	 * row_mapperの初期化
 	 */
 	private static final RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i) -> {
-		Administrator admin = new Administrator(rs.getInt("id"), rs.getString("name"), rs.getString("mailAddress"),
+		Administrator admin = new Administrator(rs.getInt("id"), rs.getString("name"), rs.getString("mail_address"),
 				rs.getString("password"));
 
 		return admin;
