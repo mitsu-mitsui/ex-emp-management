@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Employee;
@@ -27,7 +29,7 @@ public class EmployeeRepository {
 	/**
 	 * 全件検索．
 	 * 
-	 * @return emplist 全従業員のemployee型リスト
+	 * @return 全従業員が格納されたemployee型リスト
 	 */
 	public List<Employee> findAll() {
 
@@ -47,11 +49,21 @@ public class EmployeeRepository {
 	 */
 	public Employee load(Integer id) {
 
-		return null;///
+		String sql = "SELECT id,name,image,gender,here_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count"
+				+ " FROM employees" + " WHERE id =:id;";
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+
+		try {
+			Employee emp = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
+			return emp;
+		} catch (Exception e) {// hitしない
+			return null;
+		}
 	}
 
 	/**
-	 * idによる従業員データ更新．
+	 * id一致従業員のデータ更新．
 	 * 
 	 * @param emp
 	 */
