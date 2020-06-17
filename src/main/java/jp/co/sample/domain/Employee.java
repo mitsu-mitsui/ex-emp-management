@@ -2,19 +2,89 @@ package jp.co.sample.domain;
 
 import java.util.Date;
 
+/**
+ * 従業員ドメイン．
+ * 
+ * @author yuiko.mitsui
+ *
+ */
 public class Employee {
+	/**
+	 * ID.
+	 */
 	private Integer id;
+
+	/**
+	 * 名前.
+	 */
 	private String name;
+
+	/**
+	 * 画像．
+	 */
 	private String image;
+
+	/**
+	 * 性別．
+	 */
 	private String gender;
+
+	/**
+	 * 入社日.
+	 */
 	private Date hireDate;
+
+	/**
+	 * メールアドレス．
+	 */
 	private String mailAddress;
+
+	/**
+	 * 郵便番号.
+	 */
 	private String zipCode;
+
+	/**
+	 * 住所．
+	 */
 	private String address;
+	/**
+	 * 電話番号．
+	 */
 	private String telephone;
+	/**
+	 * 給料．
+	 */
 	private Integer salary;
+	/**
+	 * 特性．
+	 */
 	private String characteristics;
+	/**
+	 * 扶養人数．
+	 */
 	private Integer dependentsCount;
+
+	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
+			String zipCode, String address, String telephone, Integer salary, String characteristics,
+			Integer dependentsCount) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.image = image;
+		this.gender = gender;
+		this.hireDate = hireDate;
+		this.mailAddress = mailAddress;
+		this.zipCode = zipCode;
+		this.address = address;
+		this.telephone = telephone;
+		this.salary = salary;
+		this.characteristics = characteristics;
+		this.dependentsCount = dependentsCount;
+	}
+
+	public Employee() {
+	}
 
 	public Integer getId() {
 		return id;
