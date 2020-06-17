@@ -27,7 +27,6 @@ public class AdministratorService {
 	public void insert(Administrator admin) {
 
 		adminRepository.insert(admin);
-		System.out.println("service:insert()--------------");
 
 	}
 
@@ -41,8 +40,7 @@ public class AdministratorService {
 	public Administrator login(String mailAddress, String password) {
 
 		Administrator admin = adminRepository.findByMailAddressAndPassword(mailAddress, password);
-		System.out.println("service:ilogin()--------------");
-		
+
 		return admin;
 	}
 }

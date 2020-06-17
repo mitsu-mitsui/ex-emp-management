@@ -79,7 +79,7 @@ public class AdministratorController {
 	}
 
 	/**
-	 * ログイン後、従業員情報一覧ページへ遷移．
+	 * ログイン処理をする．
 	 * 
 	 * @param loginForm ログイン情報form
 	 * @return 従業員情報一覧ページ/loginできない：ログイン画面へリダイレクト
@@ -93,7 +93,6 @@ public class AdministratorController {
 
 		if (admin == null) {
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
-			session.setAttribute("administratorName", "Noname");
 			return toLogin();
 		} else {
 			session.setAttribute("administratorName", admin.getName());
