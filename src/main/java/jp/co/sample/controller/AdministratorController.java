@@ -1,14 +1,13 @@
 package jp.co.sample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -29,6 +28,21 @@ public class AdministratorController {
 		return new InsertAdministratorForm();
 	}
 
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+
+	/**
+	 * ログイン画面へ遷移. 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("")
+	public String toLogin() {
+		return "administrator/login";
+
+	}
+
 	/**
 	 * 管理者追加画面へ遷移.
 	 * 
@@ -38,23 +52,23 @@ public class AdministratorController {
 	public String toInsert() {
 		return "administrator/insert";
 	}
-	
+
 	/**
 	 * 管理者を追加．
 	 * 
-	 * @param insertAdminForm　フォーム
+	 * @param insertAdminForm フォーム
 	 * @return ログイン画面
 	 */
 	@RequestMapping("/insert")
-	public String insert( InsertAdministratorForm insertAdminForm ) {
+	public String insert(InsertAdministratorForm insertAdminForm) {
 		Administrator admin = new Administrator();
-		
+
 		admin.setName(insertAdminForm.getName());
 		admin.setMailAddress(insertAdminForm.getMailAddress());
 		admin.setPassword(insertAdminForm.getPassword());
-		
+
 		adminService.insert(admin);
-		
+
 		return "redirect: /";
 	}
 
