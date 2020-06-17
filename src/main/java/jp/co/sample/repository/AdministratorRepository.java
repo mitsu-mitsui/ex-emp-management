@@ -67,9 +67,10 @@ public class AdministratorRepository {
 
 		try {
 			Administrator admin = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
-
+			System.out.println("repository: mail & pass ：OK--------------");
 			return admin;
 		} catch (Exception e) {// 1件もhitしない
+			System.out.println("repository: mail & pass ：NG--------------");
 			return null;
 		}
 

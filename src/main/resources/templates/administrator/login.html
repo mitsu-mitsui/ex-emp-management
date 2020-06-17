@@ -28,13 +28,13 @@
 
 <!-- ここから上を編集する必要はありません -->
 
-
+					
 					<form method="post" action="../employee/list.html"  th:action="@{/login}"  th:object="${loginForm}">
 						<fieldset>
 							<legend>ログイン</legend>
 							<div class="form-group">
-								<div class="alert alert-danger">
-			                        <p>メールアドレスまたはパスワードが間違っています</p>
+								<div class="alert alert-danger" th:if="${session.administratorName== 'Noname'}"  th:text="${errorMessage}">
+			                        <p th:text="${errorMessage}">メールアドレスまたはパスワードが間違っています</p>
 			                    </div>
 							</div>
 							<div class="form-group">
