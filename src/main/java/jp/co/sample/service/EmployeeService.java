@@ -43,4 +43,13 @@ public class EmployeeService {
 
 	}
 
+	/**
+	 * 従業員情報の更新．
+	 * 
+	 * @param emp 従業員情報
+	 */
+	public void update(Employee emp) {
+		empRepository.update(emp);
+	}
+
 }
