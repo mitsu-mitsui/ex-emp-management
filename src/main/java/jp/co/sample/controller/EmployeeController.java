@@ -2,7 +2,9 @@ package jp.co.sample.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -62,6 +64,19 @@ public class EmployeeController {
 		model.addAttribute("employee", emp);
 
 		return "employee/detail";
+	}
+	
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		Employee emp = new Employee();
+		BeanUtils.copyProperties(form, emp);
+
+		emp =  empService.showDetail(emp.getId());
+		
+		BeanUtils.copyProperties(form, emp);
+		empService.update(emp);
+		
+		return "redirect:/employee/showList";
 	}
 
 }
