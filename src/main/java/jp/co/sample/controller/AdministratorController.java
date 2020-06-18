@@ -96,7 +96,7 @@ public class AdministratorController {
 			return toLogin();
 		} else {
 			session.setAttribute("administratorName", admin.getName());
-			return "/employee/list";
+			return "forward:/employee/showList";
 
 		}
 	}
