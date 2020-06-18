@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
+import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.EmployeeService;
 
 /**
@@ -21,6 +23,11 @@ import jp.co.sample.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService empService;
+
+	@ModelAttribute
+	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
+		return new UpdateEmployeeForm();
+	}
 
 	/**
 	 * 従業員一覧画面へ遷移．
@@ -37,4 +44,24 @@ public class EmployeeController {
 
 		return "employee/list";
 	}
+
+	/**
+	 * 従業員の詳細ページに遷移．
+	 * 
+	 * @param id    従業員ID
+	 * @param model requestスコープ
+	 * @return 従業員詳細画面
+	 */
+	@RequestMapping("/showDetail")
+	public String showDetail(String id, Model model) {
+
+		int intId = Integer.parseInt(id);
+
+		Employee emp = empService.showDetail(intId);
+
+		model.addAttribute("employee", emp);
+
+		return "employee/detail";
+	}
+
 }
