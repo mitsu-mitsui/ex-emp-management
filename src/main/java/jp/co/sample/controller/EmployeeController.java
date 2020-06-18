@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +26,7 @@ public class EmployeeController {
 	private EmployeeService empService;
 
 	@ModelAttribute
-	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
+	public UpdateEmployeeForm setupUpdateEmployeeForm() {
 		return new UpdateEmployeeForm();
 	}
 
@@ -65,17 +64,29 @@ public class EmployeeController {
 
 		return "employee/detail";
 	}
-	
+
+	/**
+	 * 扶養人数の更新．
+	 * 
+	 * @param form 更新情報form
+	 * @return 従業員情報一覧画面
+	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
+		Employee empFromform = new Employee();
 		Employee emp = new Employee();
-		BeanUtils.copyProperties(form, emp);
 
-		emp =  empService.showDetail(emp.getId());
+		empFromform.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		empFromform.setId(Integer.parseInt(form.getId()));
+
+		System.out.println(empFromform.getId());
 		
-		BeanUtils.copyProperties(form, emp);
+
+		emp = empService.showDetail(empFromform.getId());
+
+		emp.setDependentsCount(empFromform.getDependentsCount());
 		empService.update(emp);
-		
+
 		return "redirect:/employee/showList";
 	}
 
