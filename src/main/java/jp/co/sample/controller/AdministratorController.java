@@ -103,7 +103,7 @@ public class AdministratorController {
 	/**
 	 * ログアウト画面へ遷移．
 	 * 
-	 * @return ログアウト画面（ログイン画面）
+	 * @return ログイン画面
 	 */
 	@RequestMapping("/logout")
 	public String logout() {

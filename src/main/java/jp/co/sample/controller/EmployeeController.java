@@ -2,7 +2,6 @@ package jp.co.sample.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,9 +38,9 @@ public class EmployeeController {
 	@RequestMapping("/showList")
 	public String showList(Model model) {
 
-		List<Employee> emplist = empService.showList();
+		List<Employee> employeeList = empService.showList();
 
-		model.addAttribute("employeeList", emplist);
+		model.addAttribute("employeeList", employeeList);
 
 		return "employee/list";
 	}
@@ -58,9 +57,9 @@ public class EmployeeController {
 
 		int intId = Integer.parseInt(id);
 
-		Employee emp = empService.showDetail(intId);
+		Employee employee = empService.showDetail(intId);
 
-		model.addAttribute("employee", emp);
+		model.addAttribute("employee", employee);
 
 		return "employee/detail";
 	}
@@ -73,19 +72,10 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
-		Employee empFromform = new Employee();
-		Employee emp = new Employee();
+		Employee employee = empService.showDetail(Integer.parseInt(form.getId()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
 
-		empFromform.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
-		empFromform.setId(Integer.parseInt(form.getId()));
-
-		System.out.println(empFromform.getId());
-		
-
-		emp = empService.showDetail(empFromform.getId());
-
-		emp.setDependentsCount(empFromform.getDependentsCount());
-		empService.update(emp);
+		empService.update(employee);
 
 		return "redirect:/employee/showList";
 	}
